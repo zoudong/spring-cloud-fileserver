@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zoudong</groupId>
+    <artifactId>com.zoudong.spring.cloud.fileserver</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>spring-cloud-fileserver</name>
+    <description>spring-cloud-fileserver</description>
+
+
+    <properties>
+        <java.version>1.8</java.version>
+        <spring-boot.version>1.5.13.RELEASE</spring-boot.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <commons.lang3.version>3.6</commons.lang3.version>
+        <lombok.version>1.16.10</lombok.version>
+        <pagehelper.version>1.2.3</pagehelper.version>
+        <fastjson.version>1.2.22</fastjson.version>
+
+
+
+
+    </properties>
+
+
+    <dependencies>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            <version>1.5.13.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+            <version>1.4.5.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+            <version>1.4.5.RELEASE</version>
+        </dependency>
+
+
+
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.10.5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+
+
+    </dependencies>
+
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+
+
+                <eureka.ip>192.168.1.30</eureka.ip>
+                <eureka.port>8889</eureka.port>
+                <client.ip>192.168.1.30</client.ip>
+
+
+                <spring.data.mongodb.host>127.0.0.1</spring.data.mongodb.host>
+                <spring.data.mongodb.port>27017</spring.data.mongodb.port>
+                <spring.data.mongodb.database>files-mongo</spring.data.mongodb.database>
+
+
+                <!--rsa-->
+                <publicKey>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDsy4VQ5DP73X6jCWQJgS21bIX0DJMby+IPjP3J31Feo2jRMRPO8keUJ6ZQmBpyuVFIgSb3uzQ1fDEwl06hH71MBMIzINOMDFTxMUrEgateWmHwjU36hwFuGvYtcSzuXSXm1KMXavG5ABpRWAiocBBaxO/slYV0eOUdcnMkt+VttQIDAQAB</publicKey>
+                <privateKey>MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAOzLhVDkM/vdfqMJZAmBLbVshfQMkxvL4g+M/cnfUV6jaNExE87yR5QnplCYGnK5UUiBJve7NDV8MTCXTqEfvUwEwjMg04wMVPExSsSBq15aYfCNTfqHAW4a9i1xLO5dJebUoxdq8bkAGlFYCKhwEFrE7+yVhXR45R1ycyS35W21AgMBAAECgYEAqTYGXne0bhcpl3fudJxK/Yo/btZNiV94e4RVFxzuGKLNFC/t58RaQhTTVGRdAf5Lh3RDVGQCOvY0cHSvS5RSv8/bWoUlvwRtGsRQKwXZ/S9B2nuUf+6pEQklMnHE9ogqJdKRMB9LbpSYkcPT0qN8WA2i6BVLW6LsEx6lTJri7AECQQD9xDafqvTFqp02etxi2QiNklbjIcFdz4cexYe3kwm1LAj+A/E1QC2dbrG+AHoDfyZjVZ2CzNnJ+wzSUgS0nA7RAkEA7uEROuzrW8PIpU1q7hQAj9sBJVL+SDHRBSoconiGY2cHk1NOLVJPeV8PT08qL5yvvCctnjQYSZd32+g2qhQRpQJAVgTX20Gw3PwbdGcrI1qcOpj7WNyNVkZNcBHXElQGO2Jk3e3qKnnJvI7UMyqoMV09XvibfsX/oSa3Tue8bphjsQJATuByWAqzDHHxZuPRUxu3s8iU8EYfQKdyZUoqelthxKDYl4UCY2SyaVlCLOXvABm0zWQCZCK/gk1JfouGwVIvIQJBAKE/Mle+fBE4+XiD+i0qOcsgvNHjHDcXu09pe1wmUrQJMAQYZaczAmR42x5RVovysFN4wH/1cz2kOK9c0pQsaeI=</privateKey>
+
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                    <delimiters>
+                        <delimiter>${*}</delimiter>
+                    </delimiters>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+
+
+
+        </plugins>
+    </build>
+
+
+</project>
